@@ -1,0 +1,35 @@
+accelerator:
+  displayName: Modular Java App
+  description: A sample Modular Spring Boot application built with Tanzu supply-chain
+  iconUrl: https://github.com/sample-accelerators/icons/raw/master/icon-boot.png
+  tags:
+  - java
+  - spring
+  - web
+  - tanzu
+  options:
+    - name: sourceType
+      inputType: select
+      label: Source Type
+      choices:
+      - text: "Git Repository"
+        value: git
+      - text: "Maven Artifact"
+        value: maven
+      - text: "Pre Built Image"
+        value: oci
+      defaultValue: "git"
+      required: true
+  engine:
+    let:
+    - name: hasServiceClaims
+      expression: false
+    merge:
+    - include: [ "**/*" ]
+      exclude: [ "config/*.yaml", "Tiltfile", "README.md", "grype.yaml", "catalog/*.yaml", ".github/workflows/**", "Dockerfile" ]
+    - include: [ "README.md" ]
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: tanzu-java-web-app
+          with: "#artifactId"
