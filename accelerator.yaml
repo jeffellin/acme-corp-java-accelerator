@@ -57,7 +57,7 @@ engine:
   - include: [ src/* ]
     chain:
     - type: RewritePath
-      rewriteTo: "'src/main/java/com/acme/foo"
+      rewriteTo: "src/main/java/com/acme/foo"
   - include: [ "pom.xml" ]
     chain:
     - type: ReplaceText
