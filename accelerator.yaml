@@ -34,9 +34,9 @@ accelerator:
         value: com.acme.sales
   engine:
     merge:
-    - include: [ "pom.xml" ]
-      chain:
-        - type: ReplaceText
-          substitutions:
-          - text: "acme-web-app"
-            with: "#mavenArtifactId"
+      - include: [ "pom.xml" ]
+        chain:
+          - type: ReplaceText
+            regex:
+              - text: "<artifactId>.*<"
+                with: "'<artifactId>'+#mavenArtifactId+'>'"`
