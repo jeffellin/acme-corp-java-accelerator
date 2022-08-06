@@ -42,4 +42,4 @@ accelerator:
       - type: ReplaceText
         substitutions:
         - text: acme-web-app
-          with: "#artifactId"
+          with: "#mavenArtifactId"
