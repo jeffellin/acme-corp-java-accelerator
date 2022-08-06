@@ -39,8 +39,6 @@ accelerator:
       expression: false
     merge:
     - include: [ "**/*" ]
-      exclude: [ "config/*.yaml", "Tiltfile", "README.md", "grype.yaml", "catalog/*.yaml", ".github/workflows/**", "Dockerfile" ]
-    - include: [ "README.md" ]
       chain:
       - type: ReplaceText
         substitutions:
