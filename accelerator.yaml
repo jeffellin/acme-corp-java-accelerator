@@ -1,5 +1,5 @@
 accelerator:
-  displayName: Modular Java App
+  displayName: Acme Java App
   description: A sample Modular Spring Boot application built with Tanzu supply-chain
   iconUrl: https://github.com/sample-accelerators/icons/raw/master/icon-boot.png
   tags:
@@ -20,6 +20,16 @@ accelerator:
         value: oci
       defaultValue: "git"
       required: true
+    - name: mavenArtifactId
+      dependsOn:
+        name: sourceType
+        value: maven
+      inputType: text
+      label: Maven Artifact ID
+      defaultValue: spring-boot-initial
+      required: true
+      description: The ID of the source Maven artifact
+
   engine:
     let:
     - name: hasServiceClaims
@@ -31,5 +41,5 @@ accelerator:
       chain:
       - type: ReplaceText
         substitutions:
-        - text: tanzu-java-web-app
+        - text: acme-web-app
           with: "#artifactId"
