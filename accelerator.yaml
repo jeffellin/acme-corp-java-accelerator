@@ -38,7 +38,7 @@ accelerator:
       chain:
         - type: ReplaceText
           substitutions:
-          - text: acme-web-app
+          - text: "acme-web-app"
             with: "#mavenArtifactId"
         - type: ReplaceText
           substitutions:
