@@ -11,8 +11,8 @@
 	<groupId>acme-web-app-group</groupId>
 	<artifactId>acme-java-web-app</artifactId>
 	<version>acme-web-app-version</version>
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>acme-name</name>
+	<description>acme-description</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

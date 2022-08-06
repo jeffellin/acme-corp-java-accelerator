@@ -9,6 +9,13 @@ accelerator:
   - tanzu
 
   options:
+  - name: name
+    inputType: text
+    label: Name of your Project
+    required: true
+  - name: description
+    inputType: text
+    label: description
   - name: repositoryPrefix
     inputType: text
     label: Prefix for the container image repository
@@ -31,6 +38,18 @@ accelerator:
     defaultValue: 0.0.1-SNAPSHOT
     required: true
     description: The Artifact Version
+  - name: javaVersion
+    inputType: select
+    label: Java version to use
+    choices:
+    - value: "1.8"
+      text: Java 8
+    - value: "11"
+      text: Java 11
+    - value: "17"
+      text: Java 17
+    defaultValue: "11"
+    required: true
 engine:
   merge:
   - include: [ "**/*" ]
@@ -45,3 +64,11 @@ engine:
         with: "#artifactId"    
       - text: acme-web-app-version
         with: "#mavenArtifactVersion"
+      - text: acme-name
+        with: "#name"
+      - text: acme-description
+        with: "#description"
+    - type: ReplaceText
+      regex:
+        pattern: "<java.version>.*<"
+        with: "'<java.version>' + #javaVersion + '<'"
