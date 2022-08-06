@@ -40,11 +40,3 @@ accelerator:
           substitutions:
           - text: "acme-web-app"
             with: "#mavenArtifactId"
-        - type: ReplaceText
-          substitutions:
-          - text: acme-web-app-version
-            with: "#mavenArtifactId"
-        - type: ReplaceText
-          substitutions:
-          - text: acme-web-app-group
-            with: "#groupId"
