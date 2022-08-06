@@ -53,7 +53,12 @@ accelerator:
 engine:
   merge:
   - include: [ "**/*" ]
-    exclude: [ "pom.xml" ]
+    exclude: [ "pom.xml" , "src/**"]
+  - include: [ src/* ]
+    chain:
+      type: RewritePath
+      regex: src/main/java/com/example/demo
+      rewriteTo: "'src/main/java/com/acme/'+'#artifactId"
   - include: [ "pom.xml" ]
     chain:
     - type: ReplaceText
