@@ -39,4 +39,4 @@ accelerator:
           - type: ReplaceText
             regex:
               - text: "<artifactId>.*<"
-                with: "'<artifactId>'+#mavenArtifactId+'>'"`
+                with: "'<artifactId>'+#mavenArtifactId+'>'"
