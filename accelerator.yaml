@@ -51,14 +51,25 @@ accelerator:
     defaultValue: "11"
     required: true
 engine:
+  let:
+    - name: pkgName
+      expression: "#groupId+'.'+'#artifactId'"
   merge:
   - include: [ "**/*" ]
     exclude: [ "pom.xml" , "src/**"]
-  - include: [ "src/**" ]
+  - include: [ "**/*.java", "**/*.properties" ]
     chain:
+    - type: ReplaceText
+      regex:
+        pattern: com.example.demo
+        with: "#pkgName"
     - type: RewritePath
-      regex: "src/main/java/(.*)"
-      rewriteTo: "src/main/java/com/acme/foo"
+      regex: src/main/java/com/vodafone/(.*)
+      rewriteTo: "'src/main/java/' + #pkgName.replace('.', '/') + '/' + #g1"
+    - type: ReplaceText
+      substitutions:
+        - text: database=mongo
+          with: "'database=' + #database"
   - include: [ "pom.xml" ]
     chain:
     - type: ReplaceText
