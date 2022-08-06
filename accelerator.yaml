@@ -57,8 +57,7 @@ engine:
   - include: [ src/* ]
     chain:
     - type: RewritePath
-      regex: src/main/java/com/example/demo/(.*)
-      rewriteTo: "'src/main/java/com/acme/'+'#artifactId"
+      rewriteTo: "'src/main/java/com/acme/foo"
   - include: [ "pom.xml" ]
     chain:
     - type: ReplaceText
