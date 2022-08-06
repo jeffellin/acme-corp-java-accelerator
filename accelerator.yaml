@@ -29,7 +29,26 @@ accelerator:
       defaultValue: spring-boot-initial
       required: true
       description: The ID of the source Maven artifact
-
+    - name: mavenArtifactVersion
+      dependsOn:
+        name: sourceType
+        value: maven
+      inputType: text
+      label: Maven Artifact Version
+      defaultValue: RELEASE
+      required: true
+      description: The Artifact Version (either RELEASE or a specific version)
+    - name: groupId
+      inputType: select
+      label: Source Type
+      choices:
+      - text: "ecommerce"
+        value: com.acme.ecommerce
+      - text: "manufacturing"
+        value: com.acme.production
+      - text: "sales"
+        value: com.acme.sales
+      required: true
   engine:
     let:
     - name: hasServiceClaims
