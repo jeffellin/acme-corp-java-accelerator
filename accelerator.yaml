@@ -24,7 +24,7 @@ accelerator:
       description: The Artifact Version (either RELEASE or a specific version)
     - name: groupId
       inputType: select
-      label: Source Type
+      label: Acme Organization
       choices:
       - text: "ecommerce"
         value: com.acme.ecommerce
@@ -32,11 +32,7 @@ accelerator:
         value: com.acme.production
       - text: "sales"
         value: com.acme.sales
-      required: true
   engine:
-    let:
-    - name: hasServiceClaims
-      expression: false
     merge:
     - include: [ "pom.xml" ]
       chain:
