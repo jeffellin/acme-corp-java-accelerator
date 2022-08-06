@@ -8,22 +8,8 @@ accelerator:
   - web
   - tanzu
   options:
-    - name: sourceType
-      inputType: select
-      label: Source Type
-      choices:
-      - text: "Git Repository"
-        value: git
-      - text: "Maven Artifact"
-        value: maven
-      - text: "Pre Built Image"
-        value: oci
-      defaultValue: "git"
-      required: true
     - name: mavenArtifactId
       dependsOn:
-        name: sourceType
-        value: maven
       inputType: text
       label: Maven Artifact ID
       defaultValue: spring-boot-initial
@@ -31,8 +17,6 @@ accelerator:
       description: The ID of the source Maven artifact
     - name: mavenArtifactVersion
       dependsOn:
-        name: sourceType
-        value: maven
       inputType: text
       label: Maven Artifact Version
       defaultValue: 0.0.1-SNAPSHOT
