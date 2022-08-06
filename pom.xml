@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>acme-web-app-group</groupId>
-	<artifactId>acme-web-app</artifactId>
+	<artifactId>acme-java-web-app</artifactId>
 	<version>acme-web-app-version</version>
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>

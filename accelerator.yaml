@@ -18,28 +18,10 @@ accelerator:
 engine:
   merge:
   - include: [ "**/*" ]
-    exclude: [ "config/*.yaml", "Tiltfile", "README.md", "grype.yaml", "catalog/*.yaml", ".github/workflows/**" ]
-  - include: [ "config/*.yaml", "Tiltfile" ]
+    exclude: [ "pom.xml" ]
+  - include: [ "pom.xml" ]
     chain:
     - type: ReplaceText
       substitutions:
-      - text: tanzu-java-web-app
+      - text: acme-java-web-app
         with: "#artifactId"
-    - type: ReplaceText
-      substitutions:
-      - text: your-registry.io/project
-        with: "#repositoryPrefix"
-  - include: [ "README.md" ]
-    chain:
-    - type: ReplaceText
-      substitutions:
-      - text: tanzu-java-web-app
-        with: "#artifactId"
-  - include: [ "catalog/*.yaml" ]
-    chain:
-    - type: ReplaceText
-      substitutions:
-      - text: tanzu-java-web-app
-        with: "#artifactId"
-    - type: RewritePath
-      rewriteTo: "#filename"
