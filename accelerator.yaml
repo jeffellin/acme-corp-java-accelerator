@@ -53,7 +53,7 @@ accelerator:
 engine:
   let:
     - name: pkgName
-      expression: "#groupId+'.'+'#artifactId'"
+      expression: "#groupId+'.'+#artifactId"
   merge:
   - include: [ "**/*" ]
     exclude: [ "pom.xml" , "src/**"]
@@ -64,7 +64,7 @@ engine:
         pattern: com.example.demo
         with: "#pkgName"
     - type: RewritePath
-      regex: src/main/java/com/vodafone/(.*)
+      regex: src/main/java/com/example/demo/(.*)
       rewriteTo: "'src/main/java/' + #pkgName.replace('.', '/') + '/' + #g1"
     - type: ReplaceText
       substitutions:
