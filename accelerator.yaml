@@ -24,6 +24,13 @@ accelerator:
       value: com.acme.production
     - text: "sales"
       value: com.acme.sales
+    required: true
+  - name: mavenArtifactVersion
+    inputType: text
+    label: Maven Artifact Version
+    defaultValue: 0.0.1-SNAPSHOT
+    required: true
+    description: The Artifact Version
 engine:
   merge:
   - include: [ "**/*" ]
@@ -34,5 +41,7 @@ engine:
       substitutions:
       - text: acme-java-web-app
         with: "#groupId"
+      - text: acme-web-app-group
+        with: "#artifactId"    
       - text: acme-web-app-group
         with: "#artifactId"
