@@ -35,7 +35,7 @@ accelerator:
         value: maven
       inputType: text
       label: Maven Artifact Version
-      defaultValue: RELEASE
+      defaultValue: 0.0.1-SNAPSHOT
       required: true
       description: The Artifact Version (either RELEASE or a specific version)
     - name: groupId
@@ -62,3 +62,11 @@ accelerator:
         substitutions:
         - text: acme-web-app
           with: "#mavenArtifactId"
+      - type: ReplaceText
+        substitutions:
+        - text: acme-web-app-version
+          with: "#mavenArtifactId"
+      - type: ReplaceText
+        substitutions:
+        - text: acme-web-app-group
+          with: "#groupId"
