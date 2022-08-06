@@ -43,5 +43,5 @@ engine:
         with: "#groupId"
       - text: acme-web-app-group
         with: "#artifactId"    
-      - text: acme-web-app-group
+      - text: acme-web-app-version
         with: "#artifactId"
