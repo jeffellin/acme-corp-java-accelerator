@@ -44,4 +44,4 @@ engine:
       - text: acme-web-app-group
         with: "#artifactId"    
       - text: acme-web-app-version
-        with: "#artifactId"
+        with: "#mavenArtifactVersion"
