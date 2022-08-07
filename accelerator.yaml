@@ -156,7 +156,7 @@ engine:
         pattern: com.example.demo
         with: "#pkgName"
     - type: RewritePath
-      regex: src/main/java/com/example/demo/(.*)
+      regex: src/test/java/com/example/demo/(.*)
       rewriteTo: "'src/test/java/' + #pkgName.replace('.', '/') + '/' + #g1"
     - type: RewritePath
       regex: src/main/java/com/example/demo/(.*)
