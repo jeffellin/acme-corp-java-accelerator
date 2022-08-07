@@ -106,7 +106,7 @@ engine:
   - include: [ "**/*" ]
     exclude: [ "pom.xml" , "src/**","config/**"]
   - include: [ "Tiltfile" ]
-    condition: createTiltFile
+    condition: '#createTiltFile'
     chain:
     - type: ReplaceText
       substitutions:
