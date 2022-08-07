@@ -99,7 +99,7 @@ engine:
     chain:
     - type: ReplaceText
       condition: '#createWorkload'
-      subsititions:
+      substitutions:
       - text: acme-name
         with: "#artifactId"
       - text: acme-namespace
