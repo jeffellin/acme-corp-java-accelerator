@@ -109,12 +109,10 @@ engine:
     condition: '#createTiltFile'
     chain:
     - type: ReplaceText
-      condition: '#createTiltFile'
       substitutions:
       - text: tanzu-java-web-app
         with: "#artifactId"
     - type: ReplaceText
-      condition: '#createTiltFile'
       substitutions:
       - text: your-registry.io/project
         with: "#repositoryPrefix"
