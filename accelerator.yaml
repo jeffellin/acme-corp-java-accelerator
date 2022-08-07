@@ -17,11 +17,6 @@ accelerator:
     inputType: text
     label: description
     defaultValue: A New Acme World Product
-  - name: repositoryPrefix
-    inputType: text
-    label: Prefix for the container image repository
-    defaultValue: dev.local
-    required: true
   - name: groupId
     inputType: select
     label: Acme Organization
@@ -89,6 +84,20 @@ accelerator:
     dependsOn:
       name: createWorkload
       value: true
+  - name: createTiltFile
+    inputType: checkbox
+    dataType: boolean
+    defaultValue: false
+    label: Create Tiltfile
+    description: Create Configuration for Live Reload
+  - name: repositoryPrefix
+    dependsOn:
+      name: createTiltFile
+      value: true
+    inputType: text
+    label: Prefix for the container image repository
+    defaultValue: dev.local
+    required: true
 engine:
   let:
     - name: pkgName
@@ -96,6 +105,32 @@ engine:
   merge:
   - include: [ "**/*" ]
     exclude: [ "pom.xml" , "src/**","config/**"]
+  - include: [ "Tiltfile" ]
+    condition: createTiltFile
+    chain:
+    - type: ReplaceText
+      substitutions:
+      - text: tanzu-java-web-app
+        with: "#artifactId"
+    - type: ReplaceText
+      substitutions:
+      - text: your-registry.io/project
+        with: "#repositoryPrefix"
+  - include: [ "README.md" ]
+    chain:
+    - type: ReplaceText
+      substitutions:
+      - text: tanzu-java-web-app
+        with: "#artifactId"
+  - include: [ "catalog/*.yaml" ]
+    chain:
+    - type: ReplaceText
+      substitutions:
+      - text: tanzu-java-web-app
+        with: "#artifactId"
+    - type: RewritePath
+      rewriteTo: "#filename"
+  
   - include: [ "config/**"]
     condition: '#createWorkload'
     chain:
