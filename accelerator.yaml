@@ -50,13 +50,64 @@ accelerator:
       text: Java 17
     defaultValue: "11"
     required: true
+  - name: createWorkload
+    inputType: checkbox
+    dataType: boolean
+    defaultValue: false
+    label: Create Tap Workload
+    description: Create Workload.yaml for Tanzu Application Platform
+  - name: namespace
+    inputType: text
+    defaultValue: default
+    label: Namespace to Deploy Workload
+    description: Generally this is the developer workspace e.g. cody-dev
+    dependsOn:
+      name: createWorkload
+      value: true
+  - name: partOf
+    inputType: text
+    defaultValue: default
+    label: Name of System that this Component is part of
+    description: Name of the System that this object is part of.
+    dependsOn:
+      name: createWorkload
+      value: true
+  - name: giturl
+    inputType: text
+    defaultValue: http://github.com/acmecorp/someproject
+    label: Name of GitHub URL where this workload will live
+    description: Name of GitHub URL where this workload will live
+    dependsOn:
+      name: createWorkload
+      value: true
+  - name: gitbranch
+    inputType: text
+    defaultValue: main
+    label: Name of GitHub branch where this workload will live
+    description: Name of GitHub branch where this workload will live
+    dependsOn:
+      name: createWorkload
+      value: true
 engine:
   let:
     - name: pkgName
       expression: "#groupId+'.'+#artifactId"
   merge:
   - include: [ "**/*" ]
-    exclude: [ "pom.xml" , "src/**"]
+    exclude: [ "pom.xml" , "src/**","config/**"]
+  - include: [ "config/**"]
+    chain:
+    - type: ReplaceText
+      condition: '#createWorkload'
+      subsititions:
+      - text: acme-name
+        with: "#artifactId"
+      - text: acme-namespace
+        with: "#namespace"
+      - text: acme-github
+        with: "#giturl"
+      - text: acme-branch
+        with: "#gitbranch"
   - include: [ "**/*.java", "**/*.properties" ]
     chain:
     - type: ReplaceText
@@ -65,11 +116,10 @@ engine:
         with: "#pkgName"
     - type: RewritePath
       regex: src/main/java/com/example/demo/(.*)
+      rewriteTo: "'src/test/java/' + #pkgName.replace('.', '/') + '/' + #g1"
+    - type: RewritePath
+      regex: src/main/java/com/example/demo/(.*)
       rewriteTo: "'src/main/java/' + #pkgName.replace('.', '/') + '/' + #g1"
-    - type: ReplaceText
-      substitutions:
-        - text: database=mongo
-          with: "'database=' + #database"
   - include: [ "pom.xml" ]
     chain:
     - type: ReplaceText
