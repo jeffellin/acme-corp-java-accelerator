@@ -104,7 +104,7 @@ engine:
       expression: "#groupId+'.'+#artifactId"
   merge:
   - include: [ "**/*" ]
-    exclude: [ "pom.xml" , "src/**","config/**"]
+    exclude: [ "pom.xml" , "src/**","config/**","Tiltfile"]
   - include: [ "Tiltfile" ]
     condition: '#createTiltFile'
     chain:
