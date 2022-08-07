@@ -16,6 +16,7 @@ accelerator:
   - name: description
     inputType: text
     label: description
+    defaultValue: A New Acme World Product
   - name: repositoryPrefix
     inputType: text
     label: Prefix for the container image repository
