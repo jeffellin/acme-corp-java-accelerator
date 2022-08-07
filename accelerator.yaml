@@ -97,6 +97,7 @@ engine:
   - include: [ "**/*" ]
     exclude: [ "pom.xml" , "src/**","config/**"]
   - include: [ "config/**"]
+    condition: '#createWorkload'
     chain:
     - type: ReplaceText
       condition: '#createWorkload'
