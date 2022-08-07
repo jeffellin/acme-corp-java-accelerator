@@ -106,6 +106,8 @@ engine:
         with: "#namespace"
       - text: acme-github
         with: "#giturl"
+      - text: acme-partof
+        with: "#partOf"
       - text: acme-branch
         with: "#gitbranch"
   - include: [ "**/*.java", "**/*.properties" ]
